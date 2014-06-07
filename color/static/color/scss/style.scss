@@ -20,9 +20,14 @@ a {
             cursor: pointer;
         }
     
-        .square:hover {
-        //    color: #1abc9c;
-        }
+    }
+    
+    &.not-started .square:hover {
+        color: #3498db;
+    }
+
+    &.edition .square:hover {
+        color: #34495e;
     }
 }
 

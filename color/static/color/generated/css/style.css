@@ -19,44 +19,52 @@ a {
   color: #bdc3c7;
   cursor: pointer;
 }
-
+/* line 25, ../../scss/style.scss */
+#color-area.not-started .square:hover {
+  color: #3498db;
+}
 /* line 29, ../../scss/style.scss */
+#color-area.edition .square:hover {
+  color: #34495e;
+}
+
+/* line 34, ../../scss/style.scss */
 #panel {
   width: 100%;
   margin-top: 70px;
   text-align: center;
 }
-/* line 36, ../../scss/style.scss */
+/* line 41, ../../scss/style.scss */
 #panel .radio {
   width: 300px;
   margin: auto;
   margin-bottom: 10px;
 }
-/* line 43, ../../scss/style.scss */
+/* line 48, ../../scss/style.scss */
 #panel table#options {
   margin: auto;
   margin-bottom: 50px;
 }
-/* line 48, ../../scss/style.scss */
+/* line 53, ../../scss/style.scss */
 #panel table#options td {
   width: 300px;
 }
-/* line 52, ../../scss/style.scss */
+/* line 57, ../../scss/style.scss */
 #panel table#options .lbl {
   text-align: right;
   margin-right: 30px;
   font-weight: bold;
 }
-/* line 58, ../../scss/style.scss */
+/* line 63, ../../scss/style.scss */
 #panel table#options .val {
   text-align: left;
   margin-left: 30px;
 }
-/* line 64, ../../scss/style.scss */
+/* line 69, ../../scss/style.scss */
 #panel div {
   margin-top: 50px;
 }
-/* line 67, ../../scss/style.scss */
+/* line 72, ../../scss/style.scss */
 #panel div#color-picker {
   width: 300px;
   margin: auto;
