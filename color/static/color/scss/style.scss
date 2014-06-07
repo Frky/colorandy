@@ -1,0 +1,72 @@
+
+a {
+    text-decoration: none;
+}
+
+#color-area {
+
+    font-size: 0.7em;
+
+    margin: auto;
+    margin-top: 50px;
+
+    text-align: center;
+
+    .row {
+        line-height: 1.5em;
+
+        .square {
+            color: #bdc3c7;
+            cursor: pointer;
+        }
+    
+        .square:hover {
+        //    color: #1abc9c;
+        }
+    }
+}
+
+#panel {
+
+    width: 100%;
+
+    margin-top: 70px;
+    text-align: center;
+
+    .radio {
+        width: 300px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+
+    table#options {
+
+        margin: auto;
+        margin-bottom: 50px;
+
+        td {
+            width: 300px;
+        }
+
+        .lbl {
+            text-align: right;
+            margin-right: 30px;
+            font-weight: bold;
+        }
+    
+        .val {
+            text-align: left;
+            margin-left: 30px;
+        }
+    }
+
+    div {
+        margin-top: 50px;
+
+        &#color-picker {
+            width: 300px;
+            margin: auto;
+        }
+    }
+}

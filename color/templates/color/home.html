@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+
+<head>
+	{% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'color/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'color/css/flat-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'color/generated/css/style.css' %}" />
+
+    <script src="{% static 'color/js/jquery.min.js' %}"></script>
+    <script src="{% static 'color/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'color/js/flatui-radio.js' %}"></script>
+
+</head>
+
+
+<body>
+    {% load color_extras %}
+
+    <div id="color-area">
+    {% for i in 30|get_range %}
+        <div class="row">
+        {% for j in 65|get_range %}
+            <span class="square" id="{{ forloop.parentloop.counter }}-{{ forloop.counter }}">█</span>
+        {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+
+
+    <div id="panel">
+
+        <label class="radio">
+          <input type="radio" name="edition-rb" value="1" data-toggle="radio" checked>
+          Edition mode is off
+        </label>
+        <label class="radio">
+          <input type="radio" name="edition-rb" value="2" data-toggle="radio">
+          Edit point by point
+        </label>
+        <label class="radio">
+          <input type="radio" name="edition-rb" value="3" data-toggle="radio">
+          Draw lines
+        </label>
+        <div>            
+            <input type="button" id="clean-btn" class="btn btn-inverse" value="Clean the mess">
+            <input type="button" id="clean-borders-btn" class="btn btn-inverse" value="Clean borders">
+        </div>
+
+    </div>
+    
+    <script src="{% static 'color/js/colorify.js' %}"></script>
+    <script>
+        $(".pick-a-color").pickAColor();
+    </script>
+</body>
+</html>
