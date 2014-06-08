@@ -1,72 +1,180 @@
-/* line 2, ../../scss/style.scss */
+@font-face {
+  font-family: social;
+  src: url(../../fonts/social_font.ttf);
+}
+
+@font-face {
+  font-family: wolf;
+  src: url(../../fonts/wolf.ttf);
+}
+
+/* line 14, ../../scss/style.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 19, ../../scss/style.scss */
 a {
   text-decoration: none;
 }
 
-/* line 6, ../../scss/style.scss */
-#color-area {
-  font-size: 0.7em;
-  margin: auto;
-  margin-top: 50px;
-  text-align: center;
-}
-/* line 15, ../../scss/style.scss */
-#color-area .row {
-  line-height: 1.5em;
-}
-/* line 18, ../../scss/style.scss */
-#color-area .row .square {
-  color: #bdc3c7;
-  cursor: pointer;
-}
-/* line 25, ../../scss/style.scss */
-#color-area.not-started .square:hover {
-  color: #3498db;
-}
-/* line 29, ../../scss/style.scss */
-#color-area.edition .square:hover {
-  color: #34495e;
+/* line 24, ../../scss/style.scss */
+.social {
+  position: absolute;
+  font-family: social;
+  font-size: 2.5em;
 }
 
-/* line 34, ../../scss/style.scss */
+/* line 30, ../../scss/style.scss */
+#twitter-lk {
+  top: 10px;
+  right: 50px;
+}
+/* line 31, ../../scss/style.scss */
+#twitter-lk a {
+  color: #8e44ad;
+}
+/* line 35, ../../scss/style.scss */
+#twitter-lk a:hover {
+  color: #9b59b6;
+}
+
+/* line 42, ../../scss/style.scss */
+#github-lk {
+  top: 50px;
+  right: 50px;
+}
+/* line 43, ../../scss/style.scss */
+#github-lk a {
+  color: #e67e22;
+}
+/* line 47, ../../scss/style.scss */
+#github-lk a:hover {
+  color: #f39c12;
+}
+
+/* line 54, ../../scss/style.scss */
+#main-content {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+/* line 66, ../../scss/style.scss */
+#main-content #main-title {
+  position: fixed;
+  bottom: 0px;
+  left: 50px;
+  margin: 0px;
+  z-index: -1;
+  font-size: 20em;
+  font-family: wolf;
+  line-height: 1;
+}
+/* line 79, ../../scss/style.scss */
+#main-content #color-area .row {
+  line-height: 12px;
+  margin-bottom: 3px;
+}
+/* line 82, ../../scss/style.scss */
+#main-content #color-area .row .square {
+  width: 12px;
+  height: 12px;
+  margin: 0px;
+  display: inline-block;
+  background-color: #bdc3c7;
+  cursor: pointer;
+}
+/* line 92, ../../scss/style.scss */
+#main-content #color-area.not-started .square:hover {
+  background-color: #3498db;
+}
+/* line 96, ../../scss/style.scss */
+#main-content #color-area.edition .square:hover {
+  background-color: #34495e;
+}
+
+/* line 102, ../../scss/style.scss */
 #panel {
-  width: 100%;
-  margin-top: 70px;
+  position: fixed;
+  display: inline-block;
+  width: 29%;
+  height: 90%;
+  padding-top: 170px;
+  padding-left: 20px;
+  vertical-align: top;
   text-align: center;
+  font-size: 20px;
 }
-/* line 41, ../../scss/style.scss */
-#panel .radio {
-  width: 300px;
-  margin: auto;
-  margin-bottom: 10px;
-}
-/* line 48, ../../scss/style.scss */
-#panel table#options {
-  margin: auto;
+/* line 115, ../../scss/style.scss */
+#panel > div {
+  width: 90%;
+  margin-right: 5%;
+  margin-top: 5%;
   margin-bottom: 50px;
 }
-/* line 53, ../../scss/style.scss */
+/* line 122, ../../scss/style.scss */
+#panel .radio {
+  font-size: 20px;
+}
+/* line 125, ../../scss/style.scss */
+#panel .radio.checked, #panel .radio .second-icon {
+  color: #f1c40f;
+}
+/* line 133, ../../scss/style.scss */
 #panel table#options td {
   width: 300px;
 }
-/* line 57, ../../scss/style.scss */
+/* line 137, ../../scss/style.scss */
 #panel table#options .lbl {
   text-align: right;
   margin-right: 30px;
   font-weight: bold;
 }
-/* line 63, ../../scss/style.scss */
+/* line 143, ../../scss/style.scss */
 #panel table#options .val {
   text-align: left;
   margin-left: 30px;
 }
-/* line 69, ../../scss/style.scss */
-#panel table#delta-container {
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+/* line 151, ../../scss/style.scss */
+#panel .delta-container .ui-slider {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-/* line 73, ../../scss/style.scss */
-#panel table#delta-container td {
-  width: 300px;
+/* line 156, ../../scss/style.scss */
+#panel .delta-container .lbl {
+  margin-bottom: 40px;
+}
+/* line 161, ../../scss/style.scss */
+#panel .delta-container #deltar .ui-slider-range, #panel .delta-container #deltar .ui-slider-handle {
+  background-color: #e74c3c;
+}
+/* line 167, ../../scss/style.scss */
+#panel .delta-container #deltag .ui-slider-range, #panel .delta-container #deltag .ui-slider-handle {
+  background-color: #2ecc71;
+}
+/* line 173, ../../scss/style.scss */
+#panel .delta-container #deltab .ui-slider-range, #panel .delta-container #deltab .ui-slider-handle {
+  background-color: #3498db;
+}
+/* line 180, ../../scss/style.scss */
+#panel #clean-container {
+  vertical-align: bottom;
+  position: relative;
+  bottom: 0px;
+}
+/* line 182, ../../scss/style.scss */
+#panel #clean-container .btn {
+  font-size: 20px;
+  width: 48%;
+  float: right;
+}
+/* line 187, ../../scss/style.scss */
+#panel #clean-container .btn:first-child {
+  float: left;
 }

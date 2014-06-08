@@ -27,18 +27,29 @@
 
 
 <body>
-    {% load color_extras %}
 
-    <div id="color-area" class="not-started">
-    {% for i in 30|get_range %}
-        <div class="row">
-        {% for j in 65|get_range %}
-            <span class="square" id="{{ forloop.parentloop.counter }}-{{ forloop.counter }}">█</span>
-        {% endfor %}
-        </div>
-    {% endfor %}
+    <div id="github-lk" class="social">
+        <a href="https://github.com/Frky/colorandy">Ä</a>
+    </div>
+    <div id="twitter-lk" class="social">
+        <a href="https://twitter.com/_Frky">t</a>
     </div>
 
+    {% load color_extras %}
+
+    <div id="main-content">
+        <div id="color-area" class="not-started">
+        {% for i in 85|get_range %}
+            <div class="row">
+            {% for j in 75|get_range %}
+                <div class="square" id="{{ forloop.parentloop.counter }}-{{ forloop.counter }}"></div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+    
+        <span id="main-title">Colorandy</span>
+    </div>
 
     <div id="panel">
 
@@ -55,32 +66,16 @@
           Draw lines
         </label>
 
-        <table id="delta-container">
-            <tr>
-                <td class="slider-container">
-                    <div id="deltar" class="ui-slider"></div>
-                </td>
-                <td class="slider-container">
-                    <div id="deltag" class="ui-slider"></div>
-                </td>
-                <td class="slider-container">
-                    <div id="deltab" class="ui-slider"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="lbl">
-                    delta R
-                </td>
-                <td class="lbl">
-                    delta G
-                </td>
-                <td class="lbl">
-                    delta B
-                </td>
-            </tr>
-        </table>
+        <div class="delta-container">
+            <div id="deltar" class="ui-slider"></div>
+            <div class="lbl">delta R</div>
+            <div id="deltag" class="ui-slider"></div>
+            <div class="lbl">delta G</div>
+            <div id="deltab" class="ui-slider"></div>
+            <div class="lbl">delta B</div>
+        </div>
 
-        <div>            
+        <div id="clean-container">            
             <input type="button" id="clean-btn" class="btn btn-inverse" value="Clean the mess">
             <input type="button" id="clean-borders-btn" class="btn btn-inverse" value="Clean borders">
         </div>

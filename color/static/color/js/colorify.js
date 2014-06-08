@@ -43,10 +43,13 @@ var cell_at = function(x, y) {
     Color the cell with the r, g, b values given in parameter
 */
 var rgb = function(cell, r, g, b) {
-    cell.css("color", color_to_string([r, g, b]));
+    cell.css("background-color", color_to_string([r, g, b]));
     //"rgb(" + r + ", " + g + ", " + b + ")");
 };
 
+var deltar = 1;
+var deltag = 1;
+var deltab = 1;
 /* 
     Propagation of the color by diffusion algorithm
     Color all the neighbors of the cell given in parameter
@@ -59,7 +62,7 @@ var propagate = function(row, col, pair, r, g, b) {
         if (cell.length == 0) return;
 
         /* If the cell is already colored, do nothing */
-        if (cell.css("color") != color_to_string(base_color)) {
+        if (cell.css("background-color") != color_to_string(base_color)) {
             return;
         }
 
@@ -71,13 +74,6 @@ var propagate = function(row, col, pair, r, g, b) {
         /* Recursive call on all the neighbors for the propagation */
         setTimeout(function() {
                 
-            /* Variation of the R composant during the propagation */
-            deltar = $("#deltar").slider("option").value;
-            /* Variation of the G composant during the propagation */
-            deltag = $("#deltag").slider("option").value;
-            /* Variation of the B composant during the propagation */
-            deltab = $("#deltab").slider("option").value;
-
             /* Propagation to the north */
             propagate(row-1, col, pair, r + deltar, g + deltag, b + deltab);
             /* Propagation to the south */
@@ -147,7 +143,7 @@ var clean_mess = function() {
     /* Iteration on each square */
     $(".square").each(function() {
         /* If this square is not a border */
-        if ($( this ).css("color") != color_to_string(border_color)) {
+        if ($( this ).css("background-color") != color_to_string(border_color)) {
             /* Let's colorate it with the original color */
             rgb($( this ), base_color[0], base_color[1], base_color[2]);
         }
@@ -161,7 +157,7 @@ var clean_borders = function() {
     /* Iteration on each square */
     $(".square").each(function() {
         /* If this square is a border */
-        if ($( this ).css("color") == color_to_string(border_color)) {
+        if ($( this ).css("background-color") == color_to_string(border_color)) {
             /* Let's colorate it with the original color */
             rgb($( this ), base_color[0], base_color[1], base_color[2]);
         }
@@ -202,6 +198,15 @@ $(".square").click(function() {
             $("#color-area").removeClass("not-started");
             /* Get the coordinates of the starting cell */
             coord = coordinates($( this ));
+            /* Get the delta from the UI sliders */
+
+            /* Variation of the R composant during the propagation */
+            deltar = $("#deltar").slider("option").value;
+            /* Variation of the G composant during the propagation */
+            deltag = $("#deltag").slider("option").value;
+            /* Variation of the B composant during the propagation */
+            deltab = $("#deltab").slider("option").value;
+
             /* Run the propagation alrogithm */
             propagate(coord[0], coord[1], true, propag_color[0], propag_color[1], propag_color[2]);
             /* Restaure the class "not-started" */
@@ -210,7 +215,7 @@ $(".square").click(function() {
         /* If edition point by point */
         case "2":
             /* If the cell clicked is a border ... */
-            if ($( this ).css("color") == color_to_string(border_color)) {
+            if ($( this ).css("background-color") == color_to_string(border_color)) {
                 /* ... we remove the border */
                 rgb($( this ), base_color[0], base_color[1], base_color[2]);
             /* Else */
@@ -243,8 +248,8 @@ var initSlider = function(slider) {
     if (slider.length > 0) {
           slider.slider({
                   min: 1,
-                  max: 10,
-                  value: 3,
+                  max: 13,
+                  value: 7,
                   orientation: "horizontal",
                   range: "min"
                 }).addSliderSegments(slider.slider("option").max);

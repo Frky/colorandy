@@ -1,54 +1,134 @@
+@font-face
+{
+    font-family: social;
+    src: url(../../fonts/social_font.ttf);
+}
+
+@font-face
+{
+    font-family: wolf;
+    src: url(../../fonts/wolf.ttf);
+}
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
 
 a {
     text-decoration: none;
 }
 
-#color-area {
 
-    font-size: 0.7em;
+.social {
+    position: absolute;
+    font-family: social;
+    font-size: 2.5em;
+}
 
-    margin: auto;
-    margin-top: 50px;
+#twitter-lk {
+    a {
+        color: #8e44ad;
+    }
 
-    text-align: center;
+    a:hover {
+        color: #9b59b6;
+    }
+    top: 10px;
+    right: 50px;
+}
 
-    .row {
-        line-height: 1.5em;
+#github-lk {
+    a {
+        color: #e67e22;
+    }
 
-        .square {
-            color: #bdc3c7;
-            cursor: pointer;
+    a:hover {
+        color: #f39c12;
+    }
+    top: 50px;
+    right: 50px;
+}
+
+#main-content {
+
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    #main-title {
+        position: fixed;
+        bottom: 0px;
+        left: 50px;
+        margin: 0px;
+        z-index: -1;
+        font-size: 20em;
+        font-family: wolf;
+        line-height: 1;
+    }
+    
+    #color-area {
+    
+        .row {
+            line-height: 12px;
+            margin-bottom: 3px;
+            .square {
+                width: 12px;
+                height: 12px;
+                margin: 0px;
+                display: inline-block;
+                background-color: #bdc3c7;
+                cursor: pointer;
+            }
+        }
+        
+        &.not-started .square:hover {
+            background-color: #3498db;
         }
     
-    }
-    
-    &.not-started .square:hover {
-        color: #3498db;
-    }
-
-    &.edition .square:hover {
-        color: #34495e;
+        &.edition .square:hover {
+            background-color: #34495e;
+        }
     }
 }
 
 #panel {
 
-    width: 100%;
-
-    margin-top: 70px;
+    position: fixed;
+    display: inline-block;
+    width: 29%;
+    height: 90%;
+    padding-top: 170px;
+    padding-left: 20px;
+    vertical-align: top;
     text-align: center;
 
+    font-size: 20px;
+
+    &>div {
+        width: 90%;
+        margin-right: 5%;
+        margin-top: 5%;
+        margin-bottom: 50px;
+    }
+
     .radio {
-        width: 300px;
-        margin: auto;
-        margin-bottom: 10px;
+    
+        font-size: 20px;
+        &.checked, .second-icon {
+            color: #f1c40f; //#8e44ad;
+        }
     }
 
 
     table#options {
-
-        margin: auto;
-        margin-bottom: 50px;
 
         td {
             width: 300px;
@@ -66,13 +146,49 @@ a {
         }
     }
 
-    table#delta-container {
-        margin: auto;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        td {
-            width: 300px;
+    .delta-container {
+
+        .ui-slider {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
+
+        .lbl {
+            margin-bottom: 40px;
+        }
+
+        #deltar {
+            .ui-slider-range, .ui-slider-handle {
+               background-color: #e74c3c;
+            }
+        }
+
+        #deltag {
+            .ui-slider-range, .ui-slider-handle {
+               background-color: #2ecc71;
+            }
+        }
+
+        #deltab {
+            .ui-slider-range, .ui-slider-handle {
+               background-color: #3498db;
+            }
+        }
+
     }
 
+    #clean-container {
+        vertical-align: bottom;
+        .btn {
+            font-size: 20px;
+            width: 48%;
+            float: right;
+
+            &:first-child {
+                float: left;
+            }
+        }
+        position: relative;
+        bottom: 0px;
+    }
 }
