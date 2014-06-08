@@ -28,13 +28,6 @@
 
 <body>
 
-    <div id="github-lk" class="social">
-        <a href="https://github.com/Frky/colorandy">Ä</a>
-    </div>
-    <div id="twitter-lk" class="social">
-        <a href="https://twitter.com/_Frky">t</a>
-    </div>
-
     {% load color_extras %}
 
     <div id="main-content">
@@ -53,18 +46,29 @@
 
     <div id="panel">
 
-        <label class="radio">
-          <input type="radio" name="edition-rb" value="1" data-toggle="radio" checked>
-          Edition mode is off
-        </label>
-        <label class="radio">
-          <input type="radio" name="edition-rb" value="2" data-toggle="radio">
-          Edit point by point
-        </label>
-        <label class="radio">
-          <input type="radio" name="edition-rb" value="3" data-toggle="radio">
-          Draw lines
-        </label>
+        <div id="social-container">
+            <div id="github-lk" class="social">
+                <a href="https://github.com/Frky/colorandy">Ä</a>
+            </div>
+            <div id="twitter-lk" class="social">
+                <a href="https://twitter.com/_Frky">t</a>
+            </div>
+        </div>
+
+        <div class="radio-container">
+            <label class="radio">
+              <input type="radio" name="edition-rb" value="1" data-toggle="radio" checked>
+              Edition mode is off
+            </label>
+            <label class="radio">
+              <input type="radio" name="edition-rb" value="2" data-toggle="radio">
+              Edit point by point
+            </label>
+            <label class="radio">
+              <input type="radio" name="edition-rb" value="3" data-toggle="radio">
+              Draw lines
+            </label>
+        </div>
 
         <div class="delta-container">
             <div id="deltar" class="ui-slider"></div>
