@@ -8,7 +8,9 @@ var base_color = new Array(0xbd, 0xc3, 0xc7);
 /* Coloration color */
 var propag_color = new Array(0x34, 0x98, 0xdb);
 
-
+/*
+    Generates the string corresponding to a color, css format
+   */
 var color_to_string = function(color) {
     return "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")";
 }
@@ -47,6 +49,7 @@ var rgb = function(cell, r, g, b) {
     //"rgb(" + r + ", " + g + ", " + b + ")");
 };
 
+/* Variable used during the propagation, and set by the sliders in UI */
 var deltar = 1;
 var deltag = 1;
 var deltab = 1;
@@ -186,7 +189,7 @@ $("#clean-borders-btn").click(clean_borders);
 /* This is to know if we are or not in edition mod. It is used
    to change the color of the square hovered depending on the case */
 $("input:radio[name=edition-rb]:radio").change(function() {
-    /* At each change of state, we must check whether we are or not in the edition mod */
+    /* At each change of state, we must check whether we are or not in the edition mode */
     if ($("input:radio[name=edition-rb]:checked").val() == 1) {
         /* If not, let's remove the edition class */
         $("#color-area").removeClass("edition");
@@ -197,14 +200,14 @@ $("input:radio[name=edition-rb]:radio").change(function() {
 });
 
 
-/* This is a save of the last point clicked if we are in "draw line" mod */
+/* This is a save of the last point clicked if we are in "draw line" mode */
 var starting_point = null;
 
 /* Listening on clicks on squares */
 $(".square").click(function() {
-    /* Check the mod */
+    /* Check the mode */
     switch ($("input:radio[name=edition-rb]:checked").val()) {
-        /* If edition mod is OFF */
+        /* If edition mode is OFF */
         case "1":
             /* Remove the class "not-started" to disable the :hover coloration during the propagation */
             $("#color-area").removeClass("not-started");
@@ -262,31 +265,36 @@ var initSlider = function(slider, max, val) {
     }
 }
 
-function convertCanvasToImage(canvas) {
-        var image = new Image();
-            image.src = canvas.toDataURL("image/png");
-                return image;
-}
-
+/* Listener on the background text input */
 $("#text-bg").change(function() {
+    /* On change, edit the main title */
     $("#main-title").text($("input", "#text-bg").val());
 });
 
+/* Listener on the save button */
 $("#save").click(function() {
+    /* Three steps: */
+    /* ONE: converting the color area to canvas */
     html2canvas($("#main-content"), {
             onrendered: function(canvas) {
+                /* TWO: converting canvas to blob */
                 canvas.toBlob(function(blob) {
+                    /* THREE: saving the blob at png format */
                     saveAs(blob, "colorandy.png");
                 });
             }});
 });
 
+
 $("body").ready(function() {
+    /* Initialisation of the three delta sliders */
     initSlider($("#deltar"), 13, 7);
     initSlider($("#deltag"), 13, 7);
     initSlider($("#deltab"), 13, 7);
 
+    /* Initialisation of the propagation speed slider */
     initSlider($("#prop-speed"), 9, 5);
 
+    /* Initialisation of the radio buttons */
     $(':radio').radio();
 });
