@@ -66,12 +66,13 @@ a {
         }
     }
 
-    div {
-        margin-top: 50px;
-
-        &#color-picker {
+    table#delta-container {
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        td {
             width: 300px;
-            margin: auto;
         }
     }
+
 }

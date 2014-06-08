@@ -61,11 +61,12 @@ a {
   margin-left: 30px;
 }
 /* line 69, ../../scss/style.scss */
-#panel div {
-  margin-top: 50px;
-}
-/* line 72, ../../scss/style.scss */
-#panel div#color-picker {
-  width: 300px;
+#panel table#delta-container {
   margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+/* line 73, ../../scss/style.scss */
+#panel table#delta-container td {
+  width: 300px;
 }

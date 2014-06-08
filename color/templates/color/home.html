@@ -9,7 +9,19 @@
 
     <script src="{% static 'color/js/jquery.min.js' %}"></script>
     <script src="{% static 'color/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'color/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'color/js/bootstrap-switch.min.js' %}"></script>
+    <script src="{% static 'color/js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+    <script src="{% static 'color/js/jquery.tagsinput.js' %}"></script>
+    <script src="{% static 'color/js/jquery.placeholder.js' %}"></script>
+    <script src="{% static 'color/js/application.js' %}"></script>
     <script src="{% static 'color/js/flatui-radio.js' %}"></script>
+    <!--
+    <script src="{% static 'color/js/html5shiv.js' %}"></script>
+    <script src="{% static 'color/js/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'color/js/typeahead.js' %}"></script>
+    <script src="{% static 'color/js/respond.min.js' %}"></script>
+    -->
 
 </head>
 
@@ -42,6 +54,32 @@
           <input type="radio" name="edition-rb" value="3" data-toggle="radio">
           Draw lines
         </label>
+
+        <table id="delta-container">
+            <tr>
+                <td class="slider-container">
+                    <div id="deltar" class="ui-slider"></div>
+                </td>
+                <td class="slider-container">
+                    <div id="deltag" class="ui-slider"></div>
+                </td>
+                <td class="slider-container">
+                    <div id="deltab" class="ui-slider"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="lbl">
+                    delta R
+                </td>
+                <td class="lbl">
+                    delta G
+                </td>
+                <td class="lbl">
+                    delta B
+                </td>
+            </tr>
+        </table>
+
         <div>            
             <input type="button" id="clean-btn" class="btn btn-inverse" value="Clean the mess">
             <input type="button" id="clean-borders-btn" class="btn btn-inverse" value="Clean borders">

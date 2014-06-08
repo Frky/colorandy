@@ -72,11 +72,11 @@ var propagate = function(row, col, pair, r, g, b) {
         setTimeout(function() {
                 
             /* Variation of the R composant during the propagation */
-            deltar = 3;
+            deltar = $("#deltar").slider("option").value;
             /* Variation of the G composant during the propagation */
-            deltag = 3;
+            deltag = $("#deltag").slider("option").value;
             /* Variation of the B composant during the propagation */
-            deltab = 3;
+            deltab = $("#deltab").slider("option").value;
 
             /* Propagation to the north */
             propagate(row-1, col, pair, r + deltar, g + deltag, b + deltab);
@@ -104,26 +104,34 @@ var propagate = function(row, col, pair, r, g, b) {
         return;
 }
 
-
+/*
+   Draw a border from two points 
+*/
 var draw_line = function(start, stop) {
+    /* Getting coordinates of the two points */
     start_coord = coordinates(start);
     stop_coord = coordinates(stop);
 
+    /* Direction of the draw, depending on the relative position of the two points */
     dirx = (start_coord[0] < stop_coord[0])?(+1):(-1);
     diry = (start_coord[1] < stop_coord[1])?(+1):(-1);
 
+    /* Coordinates of the current point being drawn
+       This points starts at starting_point and iterates
+       until reaching stoping_point */
     senti_coord = new Array(start_coord[0], start_coord[1]);
 
-    console.log(start_coord);
-    console.log(stop_coord);
-    console.log(senti_coord);
-
+    /* Coloration of the starting point */
     rgb(start, border_color[0], border_color[1], border_color[2]);
+
+    /* Coloration of the points horizontally until senti is on the same column that the ending-point */
     while (senti_coord[0] != stop_coord[0]) {
         console.log(senti_coord);
         senti_coord[0] += dirx;
         rgb(cell_at(senti_coord[0], senti_coord[1]), border_color[0], border_color[1], border_color[2]);
     }
+
+    /* Now coloration vertically until reaching the ending point */
     while (senti_coord[1] != stop_coord[1]) {
         console.log(senti_coord);
         senti_coord[1] += diry;
@@ -131,58 +139,98 @@ var draw_line = function(start, stop) {
     }
 }
 
+/*
+    Recoloration of all cells to the original color.
+    The borders are not affected by this function
+*/
 var clean_mess = function() {
+    /* Iteration on each square */
     $(".square").each(function() {
+        /* If this square is not a border */
         if ($( this ).css("color") != color_to_string(border_color)) {
+            /* Let's colorate it with the original color */
             rgb($( this ), base_color[0], base_color[1], base_color[2]);
         }
     });
 }
 
+/*
+    Clean the borders. All other cells are not affected
+*/
 var clean_borders = function() {
+    /* Iteration on each square */
     $(".square").each(function() {
+        /* If this square is a border */
         if ($( this ).css("color") == color_to_string(border_color)) {
+            /* Let's colorate it with the original color */
             rgb($( this ), base_color[0], base_color[1], base_color[2]);
         }
     });
 }
 
-var starting_point = null;
 
+/* Mapping buttons to their functions */
 $("#clean-btn").click(clean_mess);
 $("#clean-borders-btn").click(clean_borders);
 
+
+/* Listening on the radio buttons */
+/* This is to know if we are or not in edition mod. It is used
+   to change the color of the square hovered depending on the case */
 $("input:radio[name=edition-rb]:radio").change(function() {
+    /* At each change of state, we must check whether we are or not in the edition mod */
     if ($("input:radio[name=edition-rb]:checked").val() == 1) {
+        /* If not, let's remove the edition class */
         $("#color-area").removeClass("edition");
     } else {
+        /* If yes, let's add the edition class */
         $("#color-area").addClass("edition");
     }
-
-    return;
 });
 
+
+/* This is a save of the last point clicked if we are in "draw line" mod */
+var starting_point = null;
+
+/* Listening on clicks on squares */
 $(".square").click(function() {
+    /* Check the mod */
     switch ($("input:radio[name=edition-rb]:checked").val()) {
+        /* If edition mod is OFF */
         case "1":
+            /* Remove the class "not-started" to disable the :hover coloration during the propagation */
             $("#color-area").removeClass("not-started");
+            /* Get the coordinates of the starting cell */
             coord = coordinates($( this ));
+            /* Run the propagation alrogithm */
             propagate(coord[0], coord[1], true, propag_color[0], propag_color[1], propag_color[2]);
+            /* Restaure the class "not-started" */
             $("#color-area").addClass("not-started");
             break;
+        /* If edition point by point */
         case "2":
+            /* If the cell clicked is a border ... */
             if ($( this ).css("color") == color_to_string(border_color)) {
+                /* ... we remove the border */
                 rgb($( this ), base_color[0], base_color[1], base_color[2]);
+            /* Else */
             } else {
+                /* It becomes a border */
                 rgb($( this ), border_color[0], border_color[1], border_color[2]);
             }
             break;
+        /* If draw line is ON */
         case "3":
+            /* If starting point is null, it means that this is the first of two points to be clicked */
             if (starting_point == null) {
+                /* Let's colorate this point */
                 rgb($( this ), border_color[0], border_color[1], border_color[2]);
+                /* And save it for drawing the line when we have the second point */
                 starting_point = $( this );
+            /* Else, it is time to draw the line */
             } else {
                 draw_line(starting_point, $( this ));
+                /* Reinitialisation of the first point for future drawing */
                 starting_point = null;
             }
             break;
@@ -190,5 +238,24 @@ $(".square").click(function() {
 
 });
 
+/* Initialitatoin of the sliders */
+var initSlider = function(slider) {
+    if (slider.length > 0) {
+          slider.slider({
+                  min: 1,
+                  max: 10,
+                  value: 3,
+                  orientation: "horizontal",
+                  range: "min"
+                }).addSliderSegments(slider.slider("option").max);
+    }
+}
 
-$(':radio').radio();
+
+$("body").ready(function() {
+    initSlider($("#deltar"));
+    initSlider($("#deltag"));
+    initSlider($("#deltab"));
+
+    $(':radio').radio();
+});
