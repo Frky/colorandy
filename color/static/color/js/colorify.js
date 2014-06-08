@@ -256,6 +256,21 @@ var initSlider = function(slider) {
     }
 }
 
+function convertCanvasToImage(canvas) {
+        var image = new Image();
+            image.src = canvas.toDataURL("image/png");
+                return image;
+}
+
+
+$("#save").click(function() {
+    html2canvas($("#main-content"), {
+            onrendered: function(canvas) {
+                canvas.toBlob(function(blob) {
+                    saveAs(blob, "colorandy.png");
+                });
+            }});
+});
 
 $("body").ready(function() {
     initSlider($("#deltar"));

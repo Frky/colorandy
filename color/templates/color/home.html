@@ -16,6 +16,9 @@
     <script src="{% static 'color/js/jquery.placeholder.js' %}"></script>
     <script src="{% static 'color/js/application.js' %}"></script>
     <script src="{% static 'color/js/flatui-radio.js' %}"></script>
+    <script src="{% static 'color/js/html2canvas.js' %}"></script>
+    <script src="{% static 'color/js/canvasToBlob.js' %}"></script>
+    <script src="{% static 'color/js/FileSaver.js' %}"></script>
     <!--
     <script src="{% static 'color/js/html5shiv.js' %}"></script>
     <script src="{% static 'color/js/jquery.ui.touch-punch.min.js' %}"></script>
@@ -79,10 +82,17 @@
             <div class="lbl">delta B</div>
         </div>
 
-        <div id="clean-container">            
-            <input type="button" id="clean-btn" class="btn btn-inverse" value="Clean the mess">
-            <input type="button" id="clean-borders-btn" class="btn btn-inverse" value="Clean borders">
+        <div id="foot-btns">
+            <div id="save-container">
+                <input type="button" id="save" class="btn btn-inverse" value="Take a pic'">
+            </div>
+
+            <div id="clean-container">            
+                <input type="button" id="clean-btn" class="btn btn-inverse" value="Clean the mess">
+                <input type="button" id="clean-borders-btn" class="btn btn-inverse" value="Clean borders">
+            </div>
         </div>
+
 
     </div>
     
