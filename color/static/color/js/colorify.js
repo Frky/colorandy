@@ -50,6 +50,8 @@ var rgb = function(cell, r, g, b) {
 var deltar = 1;
 var deltag = 1;
 var deltab = 1;
+var propagationSpeed = 5;
+
 /* 
     Propagation of the color by diffusion algorithm
     Color all the neighbors of the cell given in parameter
@@ -70,6 +72,16 @@ var propagate = function(row, col, pair, r, g, b) {
         rgb(cell, r, g, b);
 
         pair = !pair;
+
+        /* Get the values from the UI sliders */
+        /* Variation of the R composant during the propagation */
+        deltar = $("#deltar").slider("option").value - 1;
+        /* Variation of the G composant during the propagation */
+        deltag = $("#deltag").slider("option").value - 1;
+        /* Variation of the B composant during the propagation */
+        deltab = $("#deltab").slider("option").value - 1;
+        /* Propagatoin speed */
+        propagationSpeed = $("#prop-speed").slider("option").value;
 
         /* Recursive call on all the neighbors for the propagation */
         setTimeout(function() {
@@ -96,7 +108,7 @@ var propagate = function(row, col, pair, r, g, b) {
             }
         /* Delay of 500ms between rounds of coloration to give the impression
         of physical propagation */
-        }, 500);
+        }, 1000 - 100 * propagationSpeed);
         return;
 }
 
@@ -198,14 +210,8 @@ $(".square").click(function() {
             $("#color-area").removeClass("not-started");
             /* Get the coordinates of the starting cell */
             coord = coordinates($( this ));
-            /* Get the delta from the UI sliders */
+            
 
-            /* Variation of the R composant during the propagation */
-            deltar = $("#deltar").slider("option").value;
-            /* Variation of the G composant during the propagation */
-            deltag = $("#deltag").slider("option").value;
-            /* Variation of the B composant during the propagation */
-            deltab = $("#deltab").slider("option").value;
 
             /* Run the propagation alrogithm */
             propagate(coord[0], coord[1], true, propag_color[0], propag_color[1], propag_color[2]);
@@ -244,12 +250,12 @@ $(".square").click(function() {
 });
 
 /* Initialitatoin of the sliders */
-var initSlider = function(slider) {
+var initSlider = function(slider, max, val) {
     if (slider.length > 0) {
           slider.slider({
                   min: 1,
-                  max: 13,
-                  value: 7,
+                  max: max,
+                  value: val,
                   orientation: "horizontal",
                   range: "min"
                 }).addSliderSegments(slider.slider("option").max);
@@ -262,6 +268,9 @@ function convertCanvasToImage(canvas) {
                 return image;
 }
 
+$("#text-bg").change(function() {
+    $("#main-title").text($("input", "#text-bg").val());
+});
 
 $("#save").click(function() {
     html2canvas($("#main-content"), {
@@ -273,9 +282,11 @@ $("#save").click(function() {
 });
 
 $("body").ready(function() {
-    initSlider($("#deltar"));
-    initSlider($("#deltag"));
-    initSlider($("#deltab"));
+    initSlider($("#deltar"), 13, 7);
+    initSlider($("#deltag"), 13, 7);
+    initSlider($("#deltab"), 13, 7);
+
+    initSlider($("#prop-speed"), 9, 5);
 
     $(':radio').radio();
 });

@@ -89,16 +89,36 @@ a {
 
     font-size: 15px;
 
-    &>div {
+    #options {
+        position: absolute;
+        top: 150px;
+        bottom: 146px;
+
+        overflow-y: scroll;
+    }
+
+    #options>div, #foot-btns {
         width: 90%;
         margin-right: 5%;
         margin-top: 5%;
-        margin-bottom: 50px;
         text-align: right;
     }
 
+   #options>div {
+        margin-bottom: 50px;
+   }
+
     #social-container {
     
+        position: absolute;
+        top: 5px;
+
+        height: 105px;
+
+        width: 90%;
+        margin-right: 5%;
+        margin-top: 10px;
+        text-align: right;
         line-height: 1;
 
         text-align: right;
@@ -137,25 +157,6 @@ a {
         }
     }
 
-
-    table#options {
-
-        td {
-            width: 300px;
-        }
-
-        .lbl {
-            text-align: right;
-            margin-right: 30px;
-            font-weight: bold;
-        }
-    
-        .val {
-            text-align: left;
-            margin-left: 30px;
-        }
-    }
-
     .delta-container {
 
         .ui-slider {
@@ -190,6 +191,8 @@ a {
     #foot-btns {
         position: absolute;
         bottom: 0px;
+        height: 116px;
+
         padding: 0px;
 
         #clean-container {
