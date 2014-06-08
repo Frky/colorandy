@@ -34,15 +34,15 @@
     {% load color_extras %}
 
     <div id="main-content">
-        <div id="color-area" class="not-started">
-        {% for i in 85|get_range %}
-            <div class="row">
-            {% for j in 75|get_range %}
-                <div class="square" id="{{ forloop.parentloop.counter }}-{{ forloop.counter }}"></div>
+        <table id="color-area" class="not-started">
+        {% for i in 100|get_range %}
+            <tr class="row">
+            {% for j in 100|get_range %}
+                <td class="square" id="{{ forloop.parentloop.counter }}-{{ forloop.counter }}"></td>
             {% endfor %}
-            </div>
+            </tr>
         {% endfor %}
-        </div>
+        </table>
     
         <span id="main-title">Colorandy</span>
     </div>

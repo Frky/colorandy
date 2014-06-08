@@ -26,12 +26,11 @@ a {
   width: 70%;
   height: 99%;
   padding-top: 5px;
-  padding-left: 20px;
   padding-bottom: 0px;
   overflow-x: hidden;
   overflow-y: hidden;
 }
-/* line 40, ../../scss/style.scss */
+/* line 39, ../../scss/style.scss */
 #main-content #main-title {
   position: fixed;
   bottom: 0px;
@@ -42,23 +41,23 @@ a {
   font-family: wolf;
   line-height: 1;
 }
-/* line 51, ../../scss/style.scss */
+/* line 50, ../../scss/style.scss */
 #main-content #color-area {
+  border-collapse: separate;
+  border-spacing: 3px;
   position: relative;
   z-index: 2;
-  background-color: rgba(1, 1, 1, 0);
 }
-/* line 55, ../../scss/style.scss */
+/* line 57, ../../scss/style.scss */
 #main-content #color-area .row {
   line-height: 12px;
-  margin-bottom: 3px;
 }
 /* line 59, ../../scss/style.scss */
 #main-content #color-area .row .square {
-  width: 12px;
+  min-width: 12px;
+  max-width: 12px;
   height: 12px;
   margin: 0px;
-  display: inline-block;
   background-color: #bdc3c7;
   cursor: pointer;
 }
