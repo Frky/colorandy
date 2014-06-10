@@ -66,6 +66,10 @@ var propagate = function(row, col, pair, r, g, b) {
         /* If cell does not exist (happens when we are out of the map) */
         if (cell.length == 0) return;
 
+        /* If the cell is overflowing the div, let's stop */
+        if (cell.position().left > $("#main-content").width()) return;
+        if (cell.position().top > $("#main-content").height()) return;
+
         /* If the cell is already colored, do nothing */
         if (cell.css("background-color") != color_to_string(base_color)) {
             return;
