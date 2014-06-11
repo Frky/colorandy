@@ -66,10 +66,6 @@ a {
             }
         }
         
-        &.not-started .square:hover {
-            background-color: #3498db;
-        }
-    
         &.edition .square:hover {
             background-color: #34495e;
         }
@@ -157,8 +153,23 @@ a {
         }
     }
 
-    .delta-container {
+    #picker-container {
+        width: 90%;
+        position: relative;
+        z-index: 2; 
+        input, span {
+            border-color: #3498db;  
+        }
 
+        #picker-prev {
+            width: 35%;
+            background-color: #3498db;
+        }
+    }
+
+    #delta-container {
+        position: relative;
+        z-index: 1;
         .ui-slider {
             margin-top: 10px;
             margin-bottom: 10px;

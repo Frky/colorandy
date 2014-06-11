@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="{% static 'color/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'color/css/flat-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'color/css/colpick.css' %}" />
     <link rel="stylesheet" href="{% static 'color/generated/css/style.css' %}" />
 
     <script src="{% static 'color/js/jquery.min.js' %}"></script>
@@ -19,6 +20,7 @@
     <script src="{% static 'color/js/html2canvas.js' %}"></script>
     <script src="{% static 'color/js/canvasToBlob.js' %}"></script>
     <script src="{% static 'color/js/FileSaver.js' %}"></script>
+    <script src="{% static 'color/js/colpick.js' %}"></script>
     <!--
     <script src="{% static 'color/js/html5shiv.js' %}"></script>
     <script src="{% static 'color/js/jquery.ui.touch-punch.min.js' %}"></script>
@@ -60,6 +62,11 @@
 
         <div id="options">
 
+            <div class="input-group" id="picker-container">
+                <input type="text" id="picker" class="form-control" value="3498db"></input>
+                <span class="input-group-addon" id="picker-prev">Color</span>
+            </div>
+
         <div class="radio-container">
             <label class="radio">
               <input type="radio" name="edition-rb" value="1" data-toggle="radio" checked>
@@ -75,7 +82,7 @@
             </label>
         </div>
 
-        <div class="delta-container">
+        <div id="delta-container">
             <div id="deltar" class="ui-slider"></div>
             <div class="lbl">delta R</div>
             <div id="deltag" class="ui-slider"></div>

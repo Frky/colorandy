@@ -62,15 +62,11 @@ a {
   cursor: pointer;
 }
 /* line 69, ../../scss/style.scss */
-#main-content #color-area.not-started .square:hover {
-  background-color: #3498db;
-}
-/* line 73, ../../scss/style.scss */
 #main-content #color-area.edition .square:hover {
   background-color: #34495e;
 }
 
-/* line 79, ../../scss/style.scss */
+/* line 75, ../../scss/style.scss */
 #panel {
   position: relative;
   display: inline-block;
@@ -82,25 +78,25 @@ a {
   text-align: center;
   font-size: 15px;
 }
-/* line 92, ../../scss/style.scss */
+/* line 88, ../../scss/style.scss */
 #panel #options {
   position: absolute;
   top: 150px;
   bottom: 146px;
   overflow-y: scroll;
 }
-/* line 100, ../../scss/style.scss */
+/* line 96, ../../scss/style.scss */
 #panel #options > div, #panel #foot-btns {
   width: 90%;
   margin-right: 5%;
   margin-top: 5%;
   text-align: right;
 }
-/* line 107, ../../scss/style.scss */
+/* line 103, ../../scss/style.scss */
 #panel #options > div {
   margin-bottom: 50px;
 }
-/* line 111, ../../scss/style.scss */
+/* line 107, ../../scss/style.scss */
 #panel #social-container {
   position: absolute;
   top: 5px;
@@ -114,81 +110,101 @@ a {
   font-family: social;
   font-size: 50px;
 }
-/* line 129, ../../scss/style.scss */
+/* line 125, ../../scss/style.scss */
 #panel #social-container #twitter-lk a {
   color: #8e44ad;
 }
-/* line 133, ../../scss/style.scss */
+/* line 129, ../../scss/style.scss */
 #panel #social-container #twitter-lk a:hover {
   color: #9b59b6;
 }
-/* line 138, ../../scss/style.scss */
+/* line 134, ../../scss/style.scss */
 #panel #social-container #github-lk {
   margin-bottom: 5px;
 }
-/* line 141, ../../scss/style.scss */
+/* line 137, ../../scss/style.scss */
 #panel #social-container #github-lk a {
   color: #e67e22;
   color: #8e44ad;
 }
-/* line 146, ../../scss/style.scss */
+/* line 142, ../../scss/style.scss */
 #panel #social-container #github-lk a:hover {
   color: #f39c12;
   color: #9b59b6;
 }
-/* line 155, ../../scss/style.scss */
+/* line 151, ../../scss/style.scss */
 #panel .radio.checked, #panel .radio .second-icon {
   color: #f1c40f;
 }
-/* line 162, ../../scss/style.scss */
-#panel .delta-container .ui-slider {
+/* line 156, ../../scss/style.scss */
+#panel #picker-container {
+  width: 90%;
+  position: relative;
+  z-index: 2;
+}
+/* line 160, ../../scss/style.scss */
+#panel #picker-container input, #panel #picker-container span {
+  border-color: #3498db;
+}
+/* line 164, ../../scss/style.scss */
+#panel #picker-container #picker-prev {
+  width: 35%;
+  background-color: #3498db;
+}
+/* line 170, ../../scss/style.scss */
+#panel #delta-container {
+  position: relative;
+  z-index: 1;
+}
+/* line 173, ../../scss/style.scss */
+#panel #delta-container .ui-slider {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-/* line 167, ../../scss/style.scss */
-#panel .delta-container .lbl {
+/* line 178, ../../scss/style.scss */
+#panel #delta-container .lbl {
   margin-bottom: 40px;
 }
-/* line 172, ../../scss/style.scss */
-#panel .delta-container #deltar .ui-slider-range, #panel .delta-container #deltar .ui-slider-handle {
+/* line 183, ../../scss/style.scss */
+#panel #delta-container #deltar .ui-slider-range, #panel #delta-container #deltar .ui-slider-handle {
   background-color: #e74c3c;
 }
-/* line 178, ../../scss/style.scss */
-#panel .delta-container #deltag .ui-slider-range, #panel .delta-container #deltag .ui-slider-handle {
+/* line 189, ../../scss/style.scss */
+#panel #delta-container #deltag .ui-slider-range, #panel #delta-container #deltag .ui-slider-handle {
   background-color: #2ecc71;
 }
-/* line 184, ../../scss/style.scss */
-#panel .delta-container #deltab .ui-slider-range, #panel .delta-container #deltab .ui-slider-handle {
+/* line 195, ../../scss/style.scss */
+#panel #delta-container #deltab .ui-slider-range, #panel #delta-container #deltab .ui-slider-handle {
   background-color: #3498db;
 }
-/* line 191, ../../scss/style.scss */
+/* line 202, ../../scss/style.scss */
 #panel #foot-btns {
   position: absolute;
   bottom: 0px;
   height: 116px;
   padding: 0px;
 }
-/* line 200, ../../scss/style.scss */
+/* line 211, ../../scss/style.scss */
 #panel #foot-btns #clean-container .btn {
   font-size: 20px;
   width: 48%;
   float: right;
 }
-/* line 205, ../../scss/style.scss */
+/* line 216, ../../scss/style.scss */
 #panel #foot-btns #clean-container .btn:first-child {
   float: left;
 }
-/* line 211, ../../scss/style.scss */
+/* line 222, ../../scss/style.scss */
 #panel #foot-btns #save-container {
   margin-bottom: 20px;
 }
-/* line 214, ../../scss/style.scss */
+/* line 225, ../../scss/style.scss */
 #panel #foot-btns #save-container .btn {
   background-color: #f39c12;
   font-size: 20px;
   width: 100%;
 }
-/* line 219, ../../scss/style.scss */
+/* line 230, ../../scss/style.scss */
 #panel #foot-btns #save-container .btn:hover {
   background-color: #f1c40f;
 }

@@ -15,6 +15,15 @@ var color_to_string = function(color) {
     return "rgb(" + color[0] + ", " + color[1] + ", " + color[2] + ")";
 }
 
+/*
+    Parse a color given by a string in format #RRGGBB into an array 
+   */
+var color_from_hex = function(color_string) {
+    var r = parseInt(color_string.substr(0,2), 16);
+    var g = parseInt(color_string.substr(2,2), 16);
+    var b = parseInt(color_string.substr(4,2), 16);
+    return new Array(r, g, b);
+}
 
 /*  
     Get coordinates of a cell 
@@ -59,7 +68,7 @@ var propagationSpeed = 5;
     Propagation of the color by diffusion algorithm
     Color all the neighbors of the cell given in parameter
 */
-var propagate = function(row, col, pair, r, g, b) {
+var propagate = function(row, col, pair, r, g, b, isFirst) {
         /* Getting the cell from its coordinates */
         cell = cell_at(row, col);
 
@@ -71,7 +80,7 @@ var propagate = function(row, col, pair, r, g, b) {
         if (cell.position().top > $("#main-content").height()) return;
 
         /* If the cell is already colored, do nothing */
-        if (cell.css("background-color") != color_to_string(base_color)) {
+        if (cell.css("background-color") != color_to_string(base_color) && !isFirst && !cell.is(':hover')) {
             return;
         }
 
@@ -94,24 +103,24 @@ var propagate = function(row, col, pair, r, g, b) {
         setTimeout(function() {
                 
             /* Propagation to the north */
-            propagate(row-1, col, pair, r + deltar, g + deltag, b + deltab);
+            propagate(row-1, col, pair, r + deltar, g + deltag, b + deltab, false);
             /* Propagation to the south */
-            propagate(row+1, col, pair, r + deltar, g + deltag, b + deltab);
+            propagate(row+1, col, pair, r + deltar, g + deltag, b + deltab, false);
             /* Propagation to the west */
-            propagate(row, col-1, pair, r + deltar, g + deltag, b + deltab);
+            propagate(row, col-1, pair, r + deltar, g + deltag, b + deltab, false);
             /* Propagation to the east */
-            propagate(row, col+1, pair, r + deltar, g + deltag, b + deltab);
+            propagate(row, col+1, pair, r + deltar, g + deltag, b + deltab, false);
 
             /* Every other time, we also propagate in the four other directions */
             if (pair) {
                 /* Propagation to the north-west */
-                propagate(row-1, col-1, pair, r + deltar, g + deltag, b + deltab);        
+                propagate(row-1, col-1, pair, r + deltar, g + deltag, b + deltab, false);        
                 /* Propagation to the north-east */
-                propagate(row-1, col+1, pair, r + deltar, g + deltag, b + deltab);        
+                propagate(row-1, col+1, pair, r + deltar, g + deltag, b + deltab, false); 
                 /* Propagation to the south-west */
-                propagate(row+1, col-1, pair, r + deltar, g + deltag, b + deltab);        
+                propagate(row+1, col-1, pair, r + deltar, g + deltag, b + deltab, false);
                 /* Propagation to the south-east */
-                propagate(row+1, col+1, pair, r + deltar, g + deltag, b + deltab);        
+                propagate(row+1, col+1, pair, r + deltar, g + deltag, b + deltab, false);   
             }
         /* Delay of 500ms between rounds of coloration to give the impression
         of physical propagation */
@@ -215,13 +224,14 @@ $(".square").click(function() {
         case "1":
             /* Remove the class "not-started" to disable the :hover coloration during the propagation */
             $("#color-area").removeClass("not-started");
+
             /* Get the coordinates of the starting cell */
             coord = coordinates($( this ));
             
-
+            rgb($( this ), propag_color[0], propag_color[1], propag_color[2]);
 
             /* Run the propagation alrogithm */
-            propagate(coord[0], coord[1], true, propag_color[0], propag_color[1], propag_color[2]);
+            propagate(coord[0], coord[1], true, propag_color[0], propag_color[1], propag_color[2], true);
             /* Restaure the class "not-started" */
             $("#color-area").addClass("not-started");
             break;
@@ -289,6 +299,22 @@ $("#save").click(function() {
             }});
 });
 
+$('#picker').colpick({
+//        flat: true,
+        layout:'hex',
+        color: '3498db',
+        submit:0,
+        colorScheme: 'white',
+        onChange:function(hsb,hex,rgb,el,bySetColor) {
+            propag_color = color_from_hex(hex);
+            $(el).css('border-color','#'+hex);
+            $("span#picker-prev").css('border-color','#'+hex);
+            $("span#picker-prev").css('background-color','#'+hex);
+            if(!bySetColor) $(el).val(hex);
+        }
+}).keyup(function(){
+        $(this).colpickSetColor(this.value);
+});
 
 $("body").ready(function() {
     /* Initialisation of the three delta sliders */
@@ -301,4 +327,19 @@ $("body").ready(function() {
 
     /* Initialisation of the radio buttons */
     $(':radio').radio();
+
+    $(".square", "#color-area.not-started").hover(function() {
+        if ($( this ).parents(".edition").length > 0) {
+            return;
+        }
+        $( this ).attr('oldcolor', $( this ).css("background-color")),
+        rgb($( this ), propag_color[0], propag_color[1], propag_color[2]);
+    }, function() {
+        if ($( this ).parents(".edition").length > 0 || $("#color-area.not-started").length == 0) {
+            return;
+        }
+        if (color_to_string(propag_color) != $( this ).css("background-color")) return;
+        $( this ).css("background-color", $( this ).attr('oldcolor'));
+//        rgb($( this ), base_color[0], base_color[1], base_color[2]);
+    });
 });
