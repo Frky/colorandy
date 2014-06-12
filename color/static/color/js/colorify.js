@@ -267,15 +267,16 @@ $(".square").click(function() {
 });
 
 /* Initialitatoin of the sliders */
-var initSlider = function(slider, max, val) {
+var initSlider = function(slider, min, max, val) {
     if (slider.length > 0) {
           slider.slider({
-                  min: 1,
+                  min: min,
                   max: max,
                   value: val,
                   orientation: "horizontal",
                   range: "min"
-                }).addSliderSegments(slider.slider("option").max);
+                }).addSliderSegments(max - min);
+//                    (slider.slider("option").max - slider.slider("option").min));
     }
 }
 
@@ -318,12 +319,12 @@ $('#picker').colpick({
 
 $("body").ready(function() {
     /* Initialisation of the three delta sliders */
-    initSlider($("#deltar"), 13, 7);
-    initSlider($("#deltag"), 13, 7);
-    initSlider($("#deltab"), 13, 7);
+    initSlider($("#deltar"), -6, 6, 1);
+    initSlider($("#deltag"), -6, 6, 1);
+    initSlider($("#deltab"), -6, 6, 1);
 
     /* Initialisation of the propagation speed slider */
-    initSlider($("#prop-speed"), 9, 5);
+    initSlider($("#prop-speed"), 1, 9, 5);
 
     /* Initialisation of the radio buttons */
     $(':radio').radio();
